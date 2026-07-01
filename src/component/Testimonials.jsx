@@ -5,46 +5,39 @@ const Testimonials = () => {
   const testimonials = [
     {
       quote:
-        "vandal is on the most talented engineers i've worked with, huis attention to details is super umatched",
+        "Iyiade is one of the most talented engineers I've worked with. His attention to detail is truly unmatched.",
       author: "Ebuka Njokwu",
       role: "CTO, Tech Innovators Inc",
-      avatar: <img src="#" alt="#" />,
+      avatar: <img src="#" alt="Ebuka Njokwu" />,
     },
     {
       quote:
-        "working with vandal was a game changer for our product. he delivered pixel-perfect results way ahead of schedule.",
-      author: "james okafor",
+        "Working with Iyiade was a game changer for our product. He delivered pixel-perfect results well ahead of schedule.",
+      author: "James Okafor",
       role: "Product Manager, NovaBuild",
-      avatar: <img src="#" />,
+      avatar: <img src="#" alt="James Okafor" />,
     },
     {
       quote:
-        "vandal has this rare ability to bridge design and engineering seamlessly. our team was blown away by the quality.",
+        "Iyiade has a rare ability to bridge design and engineering seamlessly. Our team was blown away by the quality of his work.",
       author: "Ibu Wisdom",
       role: "Lead Designer, Craftlabs",
-      avatar: <img src="#" />,
+      avatar: <img src="#" alt="Ibu Wisdom" />,
     },
     {
       quote:
-        "i've hired a lot of developers — vandal is the only one i'd call back without hesitation. just outstanding work.",
+        "I've worked with many developers — Iyiade is the only one I'd call back without hesitation. Just outstanding work.",
       author: "Oluwaseyi",
-      role: "Fullstack",
-      avatar: <img src="#" />,
+      role: "Full Stack Developer",
+      avatar: <img src="#" alt="Oluwaseyi" />,
     },
     {
       quote:
-        "he doesn't just write code, he thinks about the whole product. vandal genuinely cares about what he builds.",
-      author: "Olamide ",
+        "He doesn't just write code — he thinks about the whole product. Iyiade genuinely cares about what he builds.",
+      author: "Olamide",
       role: "CEO, Driftwave Studios",
-      avatar: <img src="#" />,
+      avatar: <img src="#" alt="Olamide" />,
     },
-    // {
-    //   quote:
-    //     "vandal tackled our most complex UI challenges like they were nothing. sharp, fast, and incredibly reliable.",
-    //   author: "macbright",
-    //   role: "Engineering Lead, Arclight",
-    //   avatar: <img src="#" />,
-    // },
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);

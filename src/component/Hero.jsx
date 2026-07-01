@@ -17,22 +17,32 @@ const Hero = () => {
     {
       id: "01",
       icon: <FaTwitter />,
-      href: "#",
+      href: "https://x.com/IyiadeTobiloba",
     },
     {
       id: "02",
       icon: <FaLinkedin />,
-      href: "#",
+      href: "https://www.linkedin.com/in/iyiade-allo-2a1295402/",
     },
     {
       id: "03",
       icon: <FaGithub />,
-      href: "#",
+      href: "https://github.com/iyiade08",
     },
   ];
 
-  const skills = ["React", "Html", "Tailwind css", "javascript", "context api"];
-
+  const skills = [
+    "React",
+    "HTML",
+    "Tailwind CSS",
+    "JavaScript",
+    "Context API",
+    "Django",
+    "Python",
+    "MongoDB",
+    "PostgreSQL",
+    "Zustand",
+  ];
   return (
     <section className="min-h-screen relative flex items-center overflow-hidden ">
       {/* background */}
@@ -65,7 +75,7 @@ const Hero = () => {
             <div className="animate-fade-in">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-pryColor">
                 <span className="w-2 h-2 bg-pryColor rounded-full animate-pulse" />
-                Junior Frontend Developer
+                Full Stack Developer
               </span>
             </div>
             {/* Headline */}
@@ -81,9 +91,10 @@ const Hero = () => {
                 </span>
               </h1>
               <p className="text-lg text-mutedForeGroundColor max-w-lg animate-fade-in animation-delay-200">
-                Hi i'm Allo Iyiade Tobiloba - a junior frontend developer
-                specializing in React, javascript html, css. I build scalable,
-                performant web applications that users love.
+                Hi, I'm Allo Iyiade Tobiloba — a Full Stack Developer
+                specializing in React, JavaScript, HTML, CSS, Django, and
+                Python. I build scalable, performant web applications that users
+                love.
               </p>
             </div>
             {/* CTA */}
@@ -91,9 +102,11 @@ const Hero = () => {
               <Button size="lg">
                 Contact Me <FaArrowRight className="w-5 h-5" />
               </Button>
-              <AnimatedBorderButton>
-                <FaDownload className="w-5 h-5" /> Download Cv
-              </AnimatedBorderButton>
+              <a href="/cv.docx" download="cv.docx">
+                <AnimatedBorderButton>
+                  <FaDownload className="w-5 h-5" /> Download Cv
+                </AnimatedBorderButton>
+              </a>{" "}
             </div>
             {/* social link */}
             <div className="flex items-center gap-4 animate-fade-in animation-delay-400">
@@ -133,7 +146,7 @@ const Hero = () => {
                 </div>
                 {/* stats badge */}
                 <div className="absolute -top-4 -left-4 glass rounded-xl px-3 py-1 animate-float animation-delay-500">
-                  <div className="text-2xl font-bold text-pryColor">2+</div>
+                  <div className="text-2xl font-bold text-pryColor">3+</div>
                   <div className="text-sm text-mutedForeGroundColor">
                     Years Exp
                   </div>

@@ -79,7 +79,7 @@
     100% {
       transform: translate(0, 0);
     }
-    250% {
+    25% {
       transform: translate(20px, -30px);
     }
     50% {

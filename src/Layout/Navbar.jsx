@@ -3,6 +3,7 @@ import Button from "../common/Button";
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const navLinks = [
@@ -23,7 +24,7 @@ const Navbar = () => {
     },
     {
       id: "04",
-      href: "#testimonial",
+      href: "#testimonials",
       label: "Testimonial",
     },
   ];
@@ -49,7 +50,7 @@ const Navbar = () => {
           href="#"
           className="text-xl font-bold tracking-tight hover:text-pryColor"
         >
-          Vandal
+          Iyiade
           <span className="text-pryColor">.</span>
         </a>
         {/* desktop Nav */}

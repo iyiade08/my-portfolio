@@ -32,7 +32,7 @@ const About = () => {
   ];
   return (
     <>
-      <section id="#about" className="py-32 relative overflow-hidden">
+      <section id="about" className="py-32 relative overflow-hidden">
         <div className="genLayout px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             {/* left column */}
@@ -51,29 +51,29 @@ const About = () => {
               </h2>
               <div className="space-y-4 text-mutedForeGroundColor animate-fade-in animation-delay-200">
                 <p>
-                  i am a passionate software engineer with a year plus of
-                  experience crafting digital products that makes a difference.
-                  Journey started with curiosity on how things work on the web
-                  and it has evolved into a deep expertis in modern frontend
-                  tech
+                  I am a passionate software engineer with experience building
+                  digital products that create real impact. What began as
+                  curiosity about how the web works has grown into deep
+                  expertise in modern full stack technologies.
                 </p>
                 <p>
-                  i specialize in React, Html, css, javascript and tailwind,
-                  building everything from sleek landing page to complex
-                  enterprise application. My approach combines technical
-                  excellence with a keen eyes for design and user experience.
+                  I specialize in building everything from sleek landing pages
+                  to complex web applications, with a keen eye for design and
+                  user experience. Core Languages: JavaScript, Python, HTML, CSS
+                  Frameworks & Libraries: React, Django, Tailwind CSS Databases:
+                  PostgreSQL, MongoDB, SQLite
                 </p>
                 <p>
-                  when i'm not coding, you'll find me exploring new tech and
-                  making contribution to open-source projects, or sharing
-                  knowledge with the developer community
+                  When I'm not coding, you'll find me exploring emerging
+                  technologies, contributing to open-source projects, or sharing
+                  knowledge with the developer community.
                 </p>
               </div>
               <div className="glass rounded-2xl p-6 glow-border animate-fade-in animation-delay-300 text-lg font-semibold italics text-pryForeground">
                 <p>
-                  my mission is to create digital experience that are not just
-                  functional but delightful - products that users loev to use
-                  and developers love to maintain
+                  My mission is to create digital experiences that are not just
+                  functional but delightful — products that users love to use
+                  and developers love to maintain.
                 </p>
               </div>
             </div>
