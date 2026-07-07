@@ -32,7 +32,7 @@ const About = () => {
   ];
   return (
     <>
-      <section id="about" className="py-32 relative overflow-hidden">
+      <section id="about" className="py-24 md:py-32 relative overflow-hidden">
         <div className="genLayout px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             {/* left column */}
@@ -42,7 +42,7 @@ const About = () => {
                   About Me
                 </span>
               </div>
-              <h2 className="ext-4xl md:text-5xl font-bold leading-tight animate-fade-in animation-delay-100 text-secForeGround">
+              <h2 className="text-4xl md:text-5xl font-bold leading-tight animate-fade-in animation-delay-100 text-secForeGround">
                 Building the future,
                 <span className="font-serif italic font-normal text-white">
                   {" "}
@@ -72,7 +72,7 @@ const About = () => {
               <div className="glass rounded-2xl p-6 glow-border animate-fade-in animation-delay-300 text-lg font-semibold italics text-pryForeground">
                 <p>
                   My mission is to create digital experiences that are not just
-                  functional but delightful — products that users love to use
+                  functional but delightful - products that users love to use
                   and developers love to maintain.
                 </p>
               </div>

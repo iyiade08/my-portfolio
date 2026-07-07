@@ -12,6 +12,13 @@ import {
   FaChevronDown,
 } from "react-icons/fa6";
 
+const heroParticles = Array.from({ length: 30 }, (_, index) => ({
+  left: `${(index * 37 + 13) % 100}%`,
+  top: `${(index * 53 + 19) % 100}%`,
+  animation: `slow-drift ${15 + ((index * 7) % 20)}s ease-in-out`,
+  animationDelay: `${(index * 3) % 5}s`,
+}));
+
 const Hero = () => {
   const socials = [
     {
@@ -52,16 +59,13 @@ const Hero = () => {
       </div>
       {/* green dots */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(30)].map((_, index) => (
+        {heroParticles.map((particle, index) => (
           <div
             key={index}
             className="w-1.5 h-1.5 absolute rounded-full opacity-60"
             style={{
               backgroundColor: "#2eb2ab",
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `slow-drift ${15 + Math.random() * 20}s ease-in-out`,
-              animationDelay: `${Math.random() * 5}s`,
+              ...particle,
             }}
           />
         ))}
@@ -80,7 +84,7 @@ const Hero = () => {
             </div>
             {/* Headline */}
             <div className="space-y-4">
-              <h1 className="text-5xl md:6xl lg:text7xl font-bold leading-tight animate-fade-in animation-delay-100">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-in animation-delay-100">
                 Crafting{" "}
                 <span className="text-pryColor glow-text ">digital</span>
                 <br />
@@ -91,7 +95,7 @@ const Hero = () => {
                 </span>
               </h1>
               <p className="text-lg text-mutedForeGroundColor max-w-lg animate-fade-in animation-delay-200">
-                Hi, I'm Allo Iyiade Tobiloba — a Full Stack Developer
+                Hi, I'm Allo Iyiade Tobiloba - a Full Stack Developer
                 specializing in React, JavaScript, HTML, CSS, Django, and
                 Python. I build scalable, performant web applications that users
                 love.
@@ -99,14 +103,16 @@ const Hero = () => {
             </div>
             {/* CTA */}
             <div className="flex flex-wrap gap-4 animate-fade-in">
-              <Button size="lg">
+              <Button as="a" href="#contact" size="lg">
                 Contact Me <FaArrowRight className="w-5 h-5" />
               </Button>
-              <a href="/cv.docx" download="cv.docx">
-                <AnimatedBorderButton>
-                  <FaDownload className="w-5 h-5" /> Download Cv
-                </AnimatedBorderButton>
-              </a>{" "}
+              <AnimatedBorderButton
+                as="a"
+                href="/cv.docx"
+                download="Allo_Iyiade_CV.docx"
+              >
+                <FaDownload className="w-5 h-5" /> Download CV
+              </AnimatedBorderButton>
             </div>
             {/* social link */}
             <div className="flex items-center gap-4 animate-fade-in animation-delay-400">

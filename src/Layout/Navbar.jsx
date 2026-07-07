@@ -3,7 +3,6 @@ import Button from "../common/Button";
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const navLinks = [
@@ -69,8 +68,8 @@ const Navbar = () => {
         </div>
         {/* CTA button */}
         <div className="hidden md:block">
-          <Button onClick={() => isMobileMenuOpen(false)} size="sm">
-            contact Me
+          <Button as="a" href="#contact" size="sm">
+            Contact Me
           </Button>
         </div>
         {/* mobile Menu */}
@@ -96,8 +95,13 @@ const Navbar = () => {
               </a>
             ))}
 
-            <Button onClick={() => setIsMobileMenuOpen(false)} size="sm">
-              contact Me
+            <Button
+              as="a"
+              href="#contact"
+              onClick={() => setIsMobileMenuOpen(false)}
+              size="sm"
+            >
+              Contact Me
             </Button>
           </div>
         </div>

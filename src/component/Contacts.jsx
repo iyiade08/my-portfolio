@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import {
   FaCheckCircle,
@@ -8,16 +8,34 @@ import {
   FaTimesCircle,
 } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
-import Button from "../common/Button";
 import emailjs from "@emailjs/browser";
+import Button from "../common/Button";
+
+const DEFAULT_CONTACT_EMAIL = "iyiadetobiloba08@gmail.com";
+
+const getEnvValue = (value) => (typeof value === "string" ? value.trim() : "");
+
+const isMissingEnvValue = (value) => {
+  const normalized = getEnvValue(value).toLowerCase();
+
+  return (
+    !normalized ||
+    normalized.includes("your_") ||
+    normalized.includes("_here") ||
+    normalized === "changeme"
+  );
+};
 
 const Contacts = () => {
+  const destinationEmail =
+    getEnvValue(import.meta.env.VITE_CONTACT_EMAIL) || DEFAULT_CONTACT_EMAIL;
+
   const contactInfo = [
     {
       icon: <FaEnvelope />,
       label: "Email",
-      value: "iyiadetobiloba08@gmail.com",
-      href: "mailto:iyiadetobiloba08@gmail.com",
+      value: destinationEmail,
+      href: `mailto:${destinationEmail}`,
     },
     {
       icon: <FaPhone />,
@@ -27,96 +45,117 @@ const Contacts = () => {
     },
     {
       icon: <FaLocationDot />,
-      label: "location",
-      value: "Lagos",
-      href: "#",
+      label: "Location",
+      value: "Lagos, Nigeria",
+      href: "https://www.google.com/maps/search/?api=1&query=Lagos%2C%20Nigeria",
     },
   ];
 
   const {
     register,
-    // handleSubmit,
-    formState: { errors },
-  } = useForm();
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  });
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [submitStatus, setSubmitStatus] = React.useState({
+    type: null,
+    message: "",
+  });
 
-  const [loading, setLoading] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState({ type: null, message: "" });
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+  const onSubmit = async ({ name, email, message }) => {
     setSubmitStatus({ type: null, message: "" });
+
+    const serviceId = getEnvValue(import.meta.env.VITE_EMAILJS_SERVICE_ID);
+    const templateId = getEnvValue(import.meta.env.VITE_EMAILJS_TEMPLATE_ID);
+    const publicKey =
+      getEnvValue(import.meta.env.VITE_EMAILJS_PUBLIC_KEY) ||
+      getEnvValue(import.meta.env.VITE_EMAILJS_PUBLICKEY_ID);
+
+    if (
+      isMissingEnvValue(serviceId) ||
+      isMissingEnvValue(templateId) ||
+      isMissingEnvValue(publicKey)
+    ) {
+      setSubmitStatus({
+        type: "error",
+        message:
+          "Email is not configured yet. Add your EmailJS service ID, template ID, and public key.",
+      });
+      return;
+    }
+
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedMessage = message.trim();
+
     try {
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLICKEY_ID;
-
-      console.log("ENV CHECK:", { serviceId, templateId, publicKey });
-
-      if (!serviceId || !templateId || !publicKey) {
-        throw new Error(
-          "EmailJs config is missing. please check ur environment variables",
-        );
-      }
-
       await emailjs.send(
         serviceId,
         templateId,
         {
-          name: name,
-          email: email,
-          message: message,
+          from_name: trimmedName,
+          from_email: trimmedEmail,
+          reply_to: trimmedEmail,
+          to_email: destinationEmail,
+          to_name: "Iyiade Tobiloba",
+          name: trimmedName,
+          email: trimmedEmail,
+          message: trimmedMessage,
           time: new Date().toLocaleString(),
         },
-        publicKey,
+        { publicKey },
       );
 
       setSubmitStatus({
         type: "success",
-        message: "Message sent successfully! i'll get back to you soon.",
+        message: "Message sent successfully. I'll get back to you soon.",
       });
-      setName("");
-      setEmail("");
-      setMessage("");
-    } catch (err) {
-      console.error("Emailjs error;", err);
+      reset();
+    } catch (error) {
       setSubmitStatus({
         type: "error",
-        message: err.text || "failed to send message try again later",
+        message:
+          error?.text ||
+          error?.message ||
+          "Failed to send the message. Please try again later.",
       });
-    } finally {
-      setLoading(false);
     }
   };
+
   return (
-    <section id="contact" className="py-32 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-1/4 left-1/4 w-98 h-96 bg-pryColor/5 rounded-full blur-3xl" />
+    <section id="contact" className="relative overflow-hidden py-24 md:py-32">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-pryColor/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-highlightColor/5 rounded-full blur-3xl" />
       </div>
-      <div className="genLayout px-6 relative z-10 ">
-        {/* header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-secForeGround text-sm font-medium tracking-wider">
+
+      <div className="genLayout px-6 relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-14 md:mb-16">
+          <span className="text-secForeGround text-sm font-medium tracking-wider uppercase">
             Get in Touch
           </span>
           <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in">
-            let's build {""}
+            Let's build{" "}
             <span className="font-serif italic font-normal text-white">
               something great
             </span>
           </h2>
           <p className="text-mutedForeGroundColor animate-fade-in animation-delay-100">
-            Have a project in mind? i'd love to hear about it. Send me a message
-            and let's discuss how we can work together{" "}
+            Have a project in mind? I'd love to hear about it. Send me a
+            message and let's discuss how we can work together.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          <div className="glass p-8 rounded-3xl border border-pryColor/30 animate-fade-in animation-delay-300">
-            <form className="space-y-6" onSubmit={handleSubmit}>
+
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 max-w-5xl mx-auto items-start">
+          <div className="glass p-6 sm:p-8 rounded-3xl border border-pryColor/30 animate-fade-in animation-delay-300">
+            <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} noValidate>
               <div>
                 <label
                   htmlFor="name"
@@ -127,13 +166,24 @@ const Contacts = () => {
                 <input
                   id="name"
                   type="text"
-                  placeholder="Your Name"
+                  placeholder="Your name"
                   className="w-full px-4 py-3 bg-surfaceColor border border-borderColor focus:border-pryColor focus:ring-1 focus:ring-pryColor outline-none transition-all rounded-md"
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  aria-invalid={errors.name ? "true" : "false"}
+                  {...register("name", {
+                    required: "Please enter your name.",
+                    minLength: {
+                      value: 2,
+                      message: "Name should be at least 2 characters.",
+                    },
+                  })}
                 />
+                {errors.name && (
+                  <p className="mt-2 text-sm text-red-400">
+                    {errors.name.message}
+                  </p>
+                )}
               </div>
+
               <div>
                 <label
                   htmlFor="email"
@@ -143,14 +193,25 @@ const Contacts = () => {
                 </label>
                 <input
                   id="email"
-                  type="text"
-                  placeholder="Your Email"
+                  type="email"
+                  placeholder="Your email"
                   className="w-full px-4 py-3 bg-surfaceColor border border-borderColor focus:border-pryColor focus:ring-1 focus:ring-pryColor outline-none transition-all rounded-md"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  aria-invalid={errors.email ? "true" : "false"}
+                  {...register("email", {
+                    required: "Please enter your email.",
+                    pattern: {
+                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      message: "Please enter a valid email address.",
+                    },
+                  })}
                 />
+                {errors.email && (
+                  <p className="mt-2 text-sm text-red-400">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
+
               <div>
                 <label
                   htmlFor="message"
@@ -159,42 +220,100 @@ const Contacts = () => {
                   Message
                 </label>
                 <textarea
+                  id="message"
                   rows={5}
-                  placeholder="Enter Text"
+                  placeholder="Tell me about your project"
                   className="w-full px-4 py-3 bg-surfaceColor border border-borderColor focus:border-pryColor focus:ring-1 focus:ring-pryColor outline-none transition-all resize-none rounded-md"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
+                  aria-invalid={errors.message ? "true" : "false"}
+                  {...register("message", {
+                    required: "Please enter your message.",
+                    minLength: {
+                      value: 10,
+                      message: "Message should be at least 10 characters.",
+                    },
+                  })}
                 />
+                {errors.message && (
+                  <p className="mt-2 text-sm text-red-400">
+                    {errors.message.message}
+                  </p>
+                )}
               </div>
 
               <Button
                 size="sm"
                 className="w-full"
                 type="submit"
-                disabled={loading}
+                disabled={isSubmitting}
               >
-                {!loading ? (
-                  <>
-                    {" "}
-                    Send
-                    <FaPaperPlane />
-                  </>
+                {isSubmitting ? (
+                  "Sending..."
                 ) : (
-                  <>sending ....</>
+                  <>
+                    Send <FaPaperPlane />
+                  </>
                 )}
               </Button>
+
               {submitStatus.type && (
                 <div
-                  className={`flex items-center gap-3 p-4 rounded-xl ${submitStatus.type === "success" ? "bg-green-500/10 border border-green-500/20 text-red-500" : "bg-red-500/10 border border-red-500/20 text-red-500"}`}
+                  className={`flex items-start gap-3 p-4 rounded-xl text-sm ${
+                    submitStatus.type === "success"
+                      ? "bg-green-500/10 border border-green-500/20 text-white"
+                      : "bg-red-500/10 border border-red-500/20 text-red-300"
+                  }`}
+                  role="status"
+                  aria-live="polite"
                 >
                   {submitStatus.type === "success" ? (
-                    <FaCheckCircle className="w-5 h-5 flex-shrink-0" />
+                    <FaCheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
                   ) : (
-                    <FaTimesCircle className="w-5 h-5 flex-shrink-0" />
+                    <FaTimesCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
                   )}
+                  <p>{submitStatus.message}</p>
                 </div>
               )}
             </form>
+          </div>
+
+          <div className="space-y-4 animate-fade-in animation-delay-400">
+            <div className="glass p-6 sm:p-8 rounded-3xl border border-borderColor/70">
+              <h3 className="text-2xl font-semibold mb-3">
+                Prefer direct contact?
+              </h3>
+              <p className="text-mutedForeGroundColor mb-6">
+                Reach out through any channel below. The form sends to this
+                same destination email once EmailJS is configured.
+              </p>
+
+              <div className="space-y-4">
+                {contactInfo.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target={item.href.startsWith("http") ? "_blank" : undefined}
+                    rel={
+                      item.href.startsWith("http")
+                        ? "noreferrer"
+                        : undefined
+                    }
+                    className="flex items-center gap-4 rounded-2xl border border-borderColor/60 bg-surfaceColor/60 p-4 transition-all hover:border-pryColor/50 hover:text-pryColor"
+                  >
+                    <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-pryColor/10 text-pryColor">
+                      {item.icon}
+                    </span>
+                    <span>
+                      <span className="block text-sm text-mutedForeGroundColor">
+                        {item.label}
+                      </span>
+                      <span className="block font-medium break-all">
+                        {item.value}
+                      </span>
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

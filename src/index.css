@@ -31,7 +31,7 @@
 
 @layer base {
   html {
-    scroll-behaviour: smooth;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -172,20 +172,20 @@
 }
 
 .genLayout {
-  width: 90%;
+  width: 100%;
   margin-inline: auto;
 }
 
 @media (min-width: 768px) {
   .genLayout {
-    max-width: 900px;
+    max-width: 1040px;
     margin-inline: auto;
   }
 }
 
 @media (min-width: 1024px) {
   .genLayout {
-    max-width: 1000px;
+    max-width: 1120px;
     margin-inline: auto;
   }
 }

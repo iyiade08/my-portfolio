@@ -12,7 +12,7 @@ const Projects = () => {
   const projects = [
     {
       id: "01",
-      title: "Manage — SaaS Product Landing Page",
+      title: "Manage - SaaS Product Landing Page",
       descritpion:
         "A professionally crafted landing page for a SaaS product management tool, structured to guide visitors toward conversion through a metrics-driven hero, feature breakdown, testimonials, and a strong CTA footer. The design balances an energetic orange accent palette with a clean layout to keep the page visually engaging without sacrificing clarity.",
       image: project1,
@@ -21,7 +21,7 @@ const Projects = () => {
     },
     {
       id: "02",
-      title: "React Jobs — Job Board Platform",
+      title: "React Jobs - Job Board Platform",
       descritpion:
         "A frontend job board application tailored for the React developer community, connecting developers with relevant opportunities and enabling employers to list open roles. Features include a dual-audience landing page, a browsable jobs listing, and an add job form for employers. The design employs a bold indigo color scheme with clean, minimal layouts to keep the focus on functionality and ease of navigation. ",
       image: project2,
@@ -42,7 +42,7 @@ const Projects = () => {
       id: "04",
       title: "Memory Card Game",
       descritpion:
-        "An interactive browser-based memory card game built to test and challenge a player's recall. Features include a 4×4 card grid with randomized emoji pairs on each session, real-time score and move tracking, matched card highlighting, and a reset button to restart the game at any point. The dark, minimal UI keeps the focus on gameplay while the purple accent palette adds a polished, engaging feel ",
+        "An interactive browser-based memory card game built to test and challenge a player's recall. Features include a 4x4 card grid with randomized emoji pairs on each session, real-time score and move tracking, matched card highlighting, and a reset button to restart the game at any point. The dark, minimal UI keeps the focus on gameplay while the purple accent palette adds a polished, engaging feel ",
       image: project4,
       tags: ["react", "Nodejs", "javascript html"],
       link: "https://memory-card-game-iota-roan.vercel.app/",
@@ -50,9 +50,9 @@ const Projects = () => {
     },
     {
       id: "05",
-      title: "CareConnect — Clinic & Appointment Booking System",
+      title: "CareConnect - Clinic & Appointment Booking System",
       descritpion:
-        "A full-stack healthcare platform connecting patients with verified doctors for seamless appointment booking and clinic management. Built with role-based dashboards for Patients, Doctors, and Admins, the system handles end-to-end appointment scheduling, doctor availability management, and daily clinic reporting. Includes a REST API for appointment data, token-based authentication, and a custom design system built entirely in vanilla CSS — featuring a soft purple and blue palette, rounded cards, and a premium SaaS aesthetic. Deployed on Render with a PostgreSQL database via Supabase.",
+        "A full-stack healthcare platform connecting patients with verified doctors for seamless appointment booking and clinic management. Built with role-based dashboards for Patients, Doctors, and Admins, the system handles end-to-end appointment scheduling, doctor availability management, and daily clinic reporting. Includes a REST API for appointment data, token-based authentication, and a custom design system built entirely in vanilla CSS - featuring a soft purple and blue palette, rounded cards, and a premium SaaS aesthetic. Deployed on Render with a PostgreSQL database via Supabase.",
       image: project5,
       tags: [
         "Python",
@@ -67,7 +67,7 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className=" relative overflow-hidden py-32">
+    <section id="projects" className=" relative overflow-hidden py-24 md:py-32">
       {/* bg acccents */}
       <div className="absolute top-1/4 bg-pryColor/5  right-0 w-96 h-96 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-1/4 left-0 h-64 w-64 bg-highlightColor/5 rounded-full blur-3xl animate-pulse" />
@@ -125,7 +125,7 @@ const Projects = () => {
               {/* content */}
               <div className="p-6 space-y-4">
                 <div className="flex items-start justify-between">
-                  <h3 className="text-xl font-semi-bold hover:text-pryColor">
+                  <h3 className="text-xl font-semibold hover:text-pryColor">
                     {project.title}
                   </h3>
                   <FaArrowUp className="w-5 h-5 text-mutedForeGroundColor group-hover:text-pryColor group-hover:translate-x-1 group-hover:translate-y-1 transition-all" />
@@ -137,7 +137,7 @@ const Projects = () => {
                   {project.tags.map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
-                      className="px-4 py-1.5 rounded-full bg-surfaceColor text-xm font-medium border border-borderColor/50 text-mutedForeGroundColor hover:border-pryColor/50 hover:text-pryColor transition-all duration-300"
+                      className="px-4 py-1.5 rounded-full bg-surfaceColor text-xs font-medium border border-borderColor/50 text-mutedForeGroundColor hover:border-pryColor/50 hover:text-pryColor transition-all duration-300"
                     >
                       {tag}
                     </span>

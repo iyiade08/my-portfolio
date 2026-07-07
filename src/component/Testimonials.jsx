@@ -26,14 +26,14 @@ const Testimonials = () => {
     },
     {
       quote:
-        "I've worked with many developers — Iyiade is the only one I'd call back without hesitation. Just outstanding work.",
+        "I've worked with many developers - Iyiade is the only one I'd call back without hesitation. Just outstanding work.",
       author: "Oluwaseyi",
       role: "Full Stack Developer",
       avatar: <img src="#" alt="Oluwaseyi" />,
     },
     {
       quote:
-        "He doesn't just write code — he thinks about the whole product. Iyiade genuinely cares about what he builds.",
+        "He doesn't just write code - he thinks about the whole product. Iyiade genuinely cares about what he builds.",
       author: "Olamide",
       role: "CEO, Driftwave Studios",
       avatar: <img src="#" alt="Olamide" />,
@@ -52,7 +52,7 @@ const Testimonials = () => {
     );
   };
   return (
-    <section id="testimonials" className="py-32 relative overflow-hidden">
+    <section id="testimonials" className="py-24 md:py-32 relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-pryColor/5 rounded-full animate-pulse -translate-x-1/2 -translate-y-1/2" />
       <div className="genLayout px-6 relative z-10">
         {/* section header */}
@@ -76,7 +76,7 @@ const Testimonials = () => {
               <div className="absolute -top-4 left-8 w-12 h-12 bg-pryColor rounded-full flex items-center justify-center">
                 <FaQuoteLeft className="w-6 h-6 text-white" />
               </div>
-              <blockquote className="textxl md:text-2xl font-medium leading-relaxed mb-8 pt-4">
+              <blockquote className="text-xl md:text-2xl font-medium leading-relaxed mb-8 pt-4">
                 " {testimonials[activeIndex].quote}"
               </blockquote>
               <div className="flex items-center gap-4">

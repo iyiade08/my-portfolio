@@ -1,16 +1,25 @@
 import React from "react";
-import { FaDownload } from "react-icons/fa6";
 
-const AnimatedBorderButton = ({ children }) => {
+const AnimatedBorderButton = ({
+  as: Component = "button",
+  children,
+  className = "",
+  type,
+  ...props
+}) => {
+  const componentProps =
+    Component === "button" ? { type: type || "button", ...props } : props;
+
   return (
-    <button
-      className="relative bg-transparent border border-border 
+    <Component
+      className={`relative inline-flex bg-transparent border border-borderColor 
         text-pryForeground hover:border-pryColor/50 transition-all 
         duration-1000 focus:outline-none focus-visible:ring-2 
         focus-visible:ring-pryColor focus-visible:ring-offset-2 
         disabled:opacity-50 disabled:cursor-not-allowed group 
         px-8 py-4 text-lg font-medium rounded-full overflow-visible 
-        animated-border "
+        animated-border ${className}`}
+      {...componentProps}
     >
       <svg
         className="absolute left-0 top-0 w-full h-full pointer-events-none download-cv-border"
@@ -21,7 +30,7 @@ const AnimatedBorderButton = ({ children }) => {
         <path
           d="M 30,1 A 29,29 0 0 0 1,30 L 1,30 A 29,29 0 0 0 30,59 L 170,59 A 29,29 0 0 0 199,30 L 199,30 A 29,29 0 0 0 170,1 Z"
           fill="none"
-          stroke="var(--color-primary)"
+          stroke="#2eb2ab"
           strokeWidth="2"
           strokeDasharray="400 550"
           strokeDashoffset="400"
@@ -34,7 +43,7 @@ const AnimatedBorderButton = ({ children }) => {
         {" "}
         {children}
       </span>
-    </button>
+    </Component>
   );
 };
 

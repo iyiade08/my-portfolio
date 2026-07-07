@@ -50,7 +50,7 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-32 relative overflow-hidden">
+    <section id="experience" className="py-24 md:py-32 relative overflow-hidden">
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-pryColor/10 rounded-full blur-3xl translate-y-1/2  animate-pulse" />
       <div className="genLayout px-6 relative z-10">
         {/* setion header */}
@@ -94,7 +94,7 @@ const Experience = () => {
                   className={`pl-8 md:pl-0 ${index % 2 === 0 ? "md:pr-16 md:text-right" : "md:col-start-2 md:pl-16"}`}
                 >
                   <div
-                    className={`glass p-6rounded-2xl border border-pryColor/30 hover:border-pryColor/50 transition-all duration-500`}
+                    className="glass p-6 rounded-2xl border border-pryColor/30 hover:border-pryColor/50 transition-all duration-500"
                   >
                     <span className="text-sm text-pryColor font-medium">
                       {experience.period}
